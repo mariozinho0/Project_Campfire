@@ -65,7 +65,7 @@ function CampingRegister() {
                     <Text style={styles.label}>
                         Whatsapp
                     </Text>
-                    <InputMask maxLength={15} value={phone} mask="phone" inputMaskChange={(text: string) => handleCustom(text)} />
+                    <InputMask maxLength={15} value={phone} mask="phone" inputMaskChange={(text: string) => handleCustom(text)} placeholder="(xx) xxxxx-xxxx" />
                 </View>
 
                 <View style={styles.inputGroup}>
