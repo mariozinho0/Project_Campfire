@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { BorderlessButton, TextInput } from 'react-native-gesture-handler';
+import { BorderlessButton, TextInput, RectButton } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import InputMask from '../../components/InputMask';
@@ -74,6 +74,12 @@ function CampingRegister() {
                     </Text>
                     <TextInput multiline={true} numberOfLines={4} style={styles.input} placeholder="Fale sobre seu camping..."/>
                 </View>
+
+                <RectButton style={styles.button}>
+                    <Text style={styles.textButton}>
+                        Cadastrar
+                    </Text>
+                </RectButton>
             </View>
         </View>
     );

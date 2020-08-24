@@ -40,6 +40,23 @@ const styles = StyleSheet.create({
         borderBottomColor: '#F28C0F',
         color: '#fff',
     },
+
+    button: {
+        width: "100%",
+        height: 60,
+        backgroundColor: '#0AA8A4',
+        marginTop: 20,
+        borderRadius: 8,
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+    },
+
+    textButton: {
+        color: '#fff',
+        fontFamily: 'Poppins_600SemiBold',
+        fontSize: 20,
+    },
 });
 
 export default styles;
