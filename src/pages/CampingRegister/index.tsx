@@ -52,6 +52,20 @@ function CampingRegister() {
                     </Text>
                     <TextInput style={styles.input} placeholder="Digite o endereço completo..."/>
                 </View>
+
+                <View style={styles.inputGroup}>
+                    <Text style={styles.label}>
+                        Whatsapp
+                    </Text>
+                    <TextInput keyboardType={'numeric'} style={styles.input} placeholder="(xx) xxxxx-xxxx"/>
+                </View>
+
+                <View style={styles.inputGroup}>
+                    <Text style={styles.label}>
+                        Sobre
+                    </Text>
+                    <TextInput multiline={true} numberOfLines={4} style={styles.input} placeholder="Fale sobre seu camping..."/>
+                </View>
             </View>
         </View>
     );
