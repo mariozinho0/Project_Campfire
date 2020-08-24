@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { BorderlessButton, TextInput } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import InputMask from '../../components/InputMask';
 
 
 import styles from './styles';
 
 
+
 function CampingRegister() {
+
+    const [phone, setPhone] = useState();
+
+    function handleCustom(value: string) {
+        setPhone(value);
+    }
 
     const { goBack } = useNavigation();
 
@@ -57,7 +65,7 @@ function CampingRegister() {
                     <Text style={styles.label}>
                         Whatsapp
                     </Text>
-                    <TextInput keyboardType={'numeric'} style={styles.input} placeholder="(xx) xxxxx-xxxx"/>
+                    <InputMask maxLength={15} value={phone} mask="phone" inputMaskChange={(text: string) => handleCustom(text)} />
                 </View>
 
                 <View style={styles.inputGroup}>
