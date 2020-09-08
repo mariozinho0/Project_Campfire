@@ -63,6 +63,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderBottomWidth: 2,
     borderBottomColor: "#E39029",
+    color: "#fff",
+  },
+
+  borderState: {
+    borderBottomWidth: 2,
+    borderBottomColor: "#E39029",
+  },
+
+  textSelect: {
+    width: 100,
+    height: 38,
+    color: "#fff",
   },
 });
 

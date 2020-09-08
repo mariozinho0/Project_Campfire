@@ -155,16 +155,17 @@ function ToCamping() {
 
                 <View style={styles.inputBlock}>
                   <Text style={styles.textInput}>Estado</Text>
-
-                  <Picker
-                    selectedValue={uf}
-                    onValueChange={(uf) => {uf == '' ? loadAllCamps()  : setUf(uf) }}
-                    style={{height: 50, width: 100}}
-                  >
-                    {states.map((uf) => {
-                      return <Picker.Item key={uf} label={uf} value={uf} />;
-                    })}
-                  </Picker>
+                  <View style={styles.borderState}>
+                    <Picker
+                      selectedValue={uf}
+                      onValueChange={(uf) => {uf == '' ? loadAllCamps()  : setUf(uf) }}
+                      style={styles.textSelect}
+                    >
+                      {states.map((uf) => {
+                        return <Picker.Item key={uf} label={uf} value={uf} />;
+                      })}
+                    </Picker>
+                  </View>
                 </View>
               </View>
               <RectButton onPress={filterSubmit} style={styles.btnFilter}>
