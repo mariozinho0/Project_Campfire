@@ -57,6 +57,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins_600SemiBold',
         fontSize: 20,
     },
+
+    padding: {
+        paddingTop: 100,
+    },
 });
 
 export default styles;

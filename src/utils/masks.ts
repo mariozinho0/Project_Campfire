@@ -4,4 +4,13 @@ function maskPhone(value: string) {
     return value;
 }
 
-export { maskPhone };
+
+
+function removeMask(value:string) {
+    const phone = value.replace(/[^a-z0-9]/gi,'');
+
+    return parseInt(phone)
+    
+}
+
+export { maskPhone, removeMask };

@@ -21,8 +21,7 @@ const InputMask: React.FC<InputMaskProps> = ({ mask, inputMaskChange, ...rest })
     return(
         <TextInput style={styles.input} 
             {...rest}
-            onChangeText={text => handleChange(text)}
-
+            onChangeText={(text) => handleChange(text)}
         />
     );
 }
