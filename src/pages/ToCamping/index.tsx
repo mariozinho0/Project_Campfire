@@ -159,6 +159,7 @@ function ToCamping() {
                     <Picker
                       selectedValue={uf}
                       onValueChange={(uf) => {uf == '' ? loadAllCamps()  : setUf(uf) }}
+                      style={{height: 50, width: 100}}
                       style={styles.textSelect}
                     >
                       {states.map((uf) => {

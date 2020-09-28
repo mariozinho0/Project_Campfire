@@ -4,8 +4,6 @@ function maskPhone(value: string) {
     return value;
 }
 
-
-
 function removeMask(value:string) {
     const phone = value.replace(/[^a-z0-9]/gi,'');
 

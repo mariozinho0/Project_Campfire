@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
 
-  borderState: {
+  borderState:{
     borderBottomWidth: 2,
     borderBottomColor: "#E39029",
   },

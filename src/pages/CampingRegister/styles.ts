@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
 
     formRegister: {
-
+        
     },
 
     textHeader: {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 
     padding: {
         paddingTop: 100,
-    },
+    }
 });
 
 export default styles;

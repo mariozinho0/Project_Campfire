@@ -87,38 +87,45 @@ function CampingRegister() {
       contact: data.contact,
     };
 
-    console.log(obj)
-
+    if(image == null) {
+      alert("Imagem Obrigatória")
+    } else {
       api
-        .post("campings", obj)
-        .then((res) => {
+      .post("campings", obj)
+      .then((res) => {
+        let isUpload = uploadImage(res.data, image);
+        if (isUpload) {
           Alert.alert(
             "Dados cadastrados!",
-            `Camp ${obj.name} cadastrados com sucesso! `,
+            `Camp ${data.name} cadastrados com sucesso!`,
             [
               {
                 text: "Inicio",
                 onPress: () => {
-                  handleGoback()
+                  handleGoback();
                 },
               },
             ]
           );
-        })
-        .catch((error) => {
-          Alert.alert(
-            "Ops...",
-            `Ocorreu um erro, tente novamente mais tarde...`,
-            [
-              {
-                text: "Inicio",
-                onPress: () => {
-                  handleGoback()
-                },
+        } else {
+          alert("Ocorreu um erro aqui")
+        }
+      })
+      .catch((error) => {
+        Alert.alert(
+          "Ops...",
+          `Ocorreu um erro, tente novamente mais tarde...`,
+          [
+            {
+              text: "Inicio",
+              onPress: () => {
+                handleGoback();
               },
-            ]
-          );
-        });
+            },
+          ]
+        );
+      });
+    }
   }
 
   // pegar a imagem
@@ -134,32 +141,49 @@ function CampingRegister() {
     if (!data.uri) {
       return console.log("Erro uri");
     }
+    if (data == null) {
+      return false;
+    } else {
+      // pega as informações da imagem
+      let localUri = data.uri;
+      let fileName = localUri.split("/").pop();
 
-    // criando o objeto da imagem
-    let obj = {
-      uri: data.uri,
-      type: data.type,
-    };
+      let match = /\.(\w+)$/.exec(fileName);
+      let type = match ? `image/${match[1]}` : `image`;
 
-    // enviado para a variavel img
-    setImage(obj);
-
-    // fazendo o upload da imagem
-    uploadImage(image);
+      // cria o objeto com as informações da imagem
+      let objImg = {
+        uri: localUri,
+        name: fileName,
+        type,
+      };
+      
+      // retorna a imagem
+      setImage(objImg);
+    }
   }
 
   // enviar a imagem
-  async function uploadImage(value: any) {
-    const data = new FormData();
-    data.append("file", value);
-    return console.log(data);
-    // aqui ta o problema
+  async function uploadImage(idCamp: any, objImage: any) {
+    // form para envio
+    const formData = new FormData();
+    formData.append("file", objImage);
     try {
-      const res = await api.post("images?campingId=3", data);
-
-      console.log(res);
+      // enviando para o back end
+      const res = await api.post(`images?campingId=${idCamp.id}`, formData, {
+        method: "post",
+        headers: {
+          "Content-Type": `multipart/form-data;`,
+        },
+      });
+      // verifica se foi enviado
+      if (res.status == 201) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (error) {
-      console.error(error);
+      console.log(error)
     }
   }
 
@@ -176,7 +200,7 @@ function CampingRegister() {
   });
 
   return (
-    <KeyboardAwareScrollView style={styles.container} keyboardShouldPersistTaps="handled">
+    <KeyboardAwareScrollView style={styles.container}>
       <BorderlessButton onPress={handleGoback} style={styles.btnGoBack}>
         <Ionicons name="md-arrow-round-back" size={30} color="#fff" />
       </BorderlessButton>
@@ -191,8 +215,7 @@ function CampingRegister() {
             contact: "",
             description: "",
           }}
-          onSubmit={(values, actions) => {
-            console.log(values);
+          onSubmit={(values: any, actions) => {
             // registra o camp
             registerCamp(values);
 
