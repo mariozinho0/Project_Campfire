@@ -9,10 +9,11 @@ import {
 import PageHeader from "../../components/PageHeader";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from "@react-native-community/picker";
-import CampItem, { Camp } from "../../components/CampItem";
+import CampItem from "../../components/CampItem";
 
 import styles from "./styles";
 import api from "../../utils/api";
+import { Camp } from "../../models/CampModel";
 
 const states = [
   "AC",
@@ -49,11 +50,15 @@ function ToCamping() {
   const [city, setCity] = useState("");
   const [uf, setUf] = useState("");
   const [loading, setLoading] = useState(true);
-  const [camps, setCamps] = useState([]);
+  const [camps, setCamps] = useState<Camp[]>([]);
   const [campsTotal, setCampsTotal] = useState(0);
 
   function handleToggleFilterVisible() {
     setIsFilterVisible(!isFilterVisible);
+
+    // reseta os campos
+    setUf("")
+    setCity("")
   }
 
   // filtrando dados
@@ -158,9 +163,10 @@ function ToCamping() {
                   <View style={styles.borderState}>
                     <Picker
                       selectedValue={uf}
-                      onValueChange={(uf) => {uf == '' ? loadAllCamps()  : setUf(uf) }}
+                      onValueChange={(itemValue) => { itemValue == '' ? loadAllCamps() : setUf(itemValue.toString()) }}
                       style={styles.textSelect}
                     >
+                      <Picker.Item label="Selecione um estado" value="-1" />
                       {states.map((uf) => {
                         return <Picker.Item key={uf} label={uf} value={uf} />;
                       })}
@@ -177,8 +183,8 @@ function ToCamping() {
         </PageHeader>
 
         <ScrollView>
-          {camps.map((camp: Camp) => {
-            return <CampItem key={camp.id} camp={camp} />;
+          {camps.map((camp: Camp, index) => {
+            return <CampItem key={index} camp={camp} />;
           })}
         </ScrollView>
       </View>

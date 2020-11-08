@@ -53,7 +53,6 @@ const states = [
 ];
 
 
-
 function CampingRegister() {
   const { control, handleSubmit, errors } = useForm();
   const { goBack } = useNavigation();
@@ -77,7 +76,6 @@ function CampingRegister() {
     goBack();
   }
 
-
   // registrar dados
   function onSubmit(data: Camp) {
     console.log(data)
@@ -98,7 +96,6 @@ function CampingRegister() {
       );
     }).catch((error) => {
       console.log(error)
-
       Alert.alert(
         "Ops...",
         `Ocorreu um erro, tente novamente mais tarde...`,
@@ -182,7 +179,7 @@ function CampingRegister() {
                 selectedValue={value}
               >
                 {states.map((uf) => {
-                  return <Picker.Item key={uf} label={uf} value={uf} />;
+                  return <Picker.Item key={uf.toString()} label={uf} value={uf} />;
                 })}
               </Picker>
             )}
@@ -279,7 +276,7 @@ function CampingRegister() {
 
         <RectButton
           style={styles.button}
-          onPress={() => handleSubmit(onSubmit)}
+          onPress={handleSubmit(onSubmit)}
         >
           <Text style={styles.textButton}>Cadastrar</Text>
         </RectButton>
