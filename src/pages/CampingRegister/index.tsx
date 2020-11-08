@@ -16,7 +16,7 @@ import * as yup from "yup";
 import styles from "./styles";
 import api from "../../utils/api";
 import InputMask from "../../components/InputMask";
-import { Camp } from "../models/CampModel";
+import { Camp } from "../../models/CampModel";
 import { Controller, useForm } from "react-hook-form";
 import { event } from "react-native-reanimated";
 
@@ -55,6 +55,8 @@ const states = [
 
 
 function CampingRegister() {
+  const { control, handleSubmit, errors } = useForm();
+  const { goBack } = useNavigation();
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -65,13 +67,9 @@ function CampingRegister() {
   const [image, setImage] = useState('');
   const [stateSelect, setStateSelect] = useState(false)
 
-  const { control, handleSubmit, errors } = useForm();
-  const { goBack } = useNavigation();
-
-  const [phone, setPhone] = useState("");
 
   function handleCustom(value: string) {
-    setPhone(value);
+    setContact(value);
   }
 
   // retornar para a tela anterior

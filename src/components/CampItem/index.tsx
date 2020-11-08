@@ -5,17 +5,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import ImgCard from '../../assets/images/imagem01.png'
 
 import styles from './styles';
-
-export interface Camp {
-    city: string,
-    contact: number,
-    description: string,
-    id: number,
-    name: string,
-    state: string
-    address: string
-    imageUrl: string
-}
+import { Camp } from '../../models/CampModel';
 
 
 interface CampItemProps {
@@ -35,9 +25,9 @@ const CampItem: React.FC<CampItemProps> = ({ camp }) => {
             <RectButton style={styles.cardItem} onPress={handleNavigateDetails}>
                 <View style={styles.cardImage}>
                     <Image source={
-                        camp.imageUrl == null 
+                        camp.image == null 
                         ? ImgCard 
-                        : {uri: camp.imageUrl}
+                        : {uri: camp.image}
                         } style={styles.images} />
                 </View>
                 <View style={styles.cardText}>
@@ -45,9 +35,9 @@ const CampItem: React.FC<CampItemProps> = ({ camp }) => {
                         {camp.name}
                     </Text>
                     <Text style={styles.textAdress}>
-                        {camp.address}
+                        {camp.location.address}
                         {'\n'}{'\n'}
-                        {camp.city} - {camp.state}
+                        {camp.location.city} - {camp.location.state}
                     </Text>
                 </View>
             </RectButton>

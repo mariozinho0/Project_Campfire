@@ -1,6 +1,6 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React from "react";
 import { View, Image, Text, Linking, Route } from "react-native";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { BorderlessButton, RectButton } from "react-native-gesture-handler";
 
 import { Ionicons } from "@expo/vector-icons";
@@ -9,12 +9,8 @@ import whatsappIcon from "../../assets/images/icons/whatsapp.png";
 import ImgCard from "../../assets/images/imagem01.png";
 
 import styles from "./styles";
+import { Camp } from "../../models/CampModel";
 
-import { Camp } from "../../components/CampItem";
-
-interface CampingDetailsProps {
-  campingDetails: Camp;
-}
 
 function CampingDetails({ route }: Route) {
   const { goBack } = useNavigation();
@@ -25,17 +21,11 @@ function CampingDetails({ route }: Route) {
 
   // enviando mensagem no whats
   function handleWhats() {
-    Linking.openURL(`whatsapp://send?phone=${contact}`);
+    Linking.openURL(`whatsapp://send?phone=${data.contact}`);
   }
-  const {
-    city,
-    contact,
-    description,
-    name,
-    state,
-    imageUrl,
-    address,
-  } = route.params.data;
+  
+  // pegando dados do parametro
+  const data: Camp = route.params.data
 
   return (
     <View style={styles.container}>
@@ -47,20 +37,20 @@ function CampingDetails({ route }: Route) {
 
       <View style={styles.imageDetails}>
         <Image
-          source={imageUrl == null ? ImgCard : { uri: imageUrl }}
+          source={data.image == null ? ImgCard : { uri: data.image }}
           style={styles.image}
         />
       </View>
       <View style={styles.textDetails}>
-        <Text style={styles.textName}>{name}</Text>
+        <Text style={styles.textName}>{data.name}</Text>
         <Text style={styles.textAdress}>
-          {address}
+          {data.location.address}
           {`\n`}
           {`\n`}
-          {city} - {state}
+          {data.location.city} - {data.location.state}
         </Text>
         <Text style={styles.textAbout}>Sobre</Text>
-        <Text style={styles.textAboutDetails}>{description}</Text>
+        <Text style={styles.textAboutDetails}>{data.description}</Text>
         <RectButton style={styles.btnWhatsapp} onPress={handleWhats}>
           <Image source={whatsappIcon} style={styles.imageWhatsapp} />
           <Text style={styles.textWhatsapp}>ENTRAR EM CONTATO</Text>
