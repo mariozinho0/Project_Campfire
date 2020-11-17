@@ -17,7 +17,8 @@ Esse projeto foi desenvolvido utilizando as seguintes tecnologias
 - [Expo](https://expo.io/)
 
 ## Api
-- [camping-fire-api](https://github.com/pablo-matheus/camping-fire-api)
+- [Camping Fire Api (NodeJs)](https://github.com/pablo-matheus/camping-fire-node-api)
+- ~[Camping Fire Api (Java)]~(https://github.com/pablo-matheus/camping-fire-api)
 
 ## Executando a aplicação
 Instalar dependências
