@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ActivityIndicator, Alert } from "react-native";
+import { View, Text, Alert } from "react-native";
 import {
   BorderlessButton,
   TextInput,
@@ -11,14 +11,12 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-community/picker";
-import * as yup from "yup";
 
 import styles from "./styles";
 import api from "../../utils/api";
 import InputMask from "../../components/InputMask";
 import { Camp } from "../../models/CampModel";
 import { Controller, useForm } from "react-hook-form";
-import { event } from "react-native-reanimated";
 
 
 // stados uf
@@ -111,18 +109,6 @@ function CampingRegister() {
     })
   }
 
-  const validationSchema = yup.object().shape({
-    name: yup.string().required("Campo obrigatório").label("Name"),
-    state: yup.string().required("Campo obrigatório").label("State"),
-    city: yup.string().required("Campo obrigatório").label("City"),
-    address: yup.string().required("Campo obrigatório").label("Address"),
-    contact: yup.string().required("Campo obrigatório").label("Contact"),
-    image: yup.string().required("Campo obrigatório").label("Image"),
-    description: yup
-      .string()
-      .required("Campo obrigatório")
-      .label("Description"),
-  });
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
@@ -144,10 +130,11 @@ function CampingRegister() {
                 value={value}
               />
             )}
+            rules={{required: true}}
             name="name"
             defaultValue=""
           />
-          {errors.name && <Text>Campo obrigatório</Text>}
+          {errors.name && <Text style={styles.error}>Campo obrigatório</Text>}
         </View>
 
         <View style={styles.inputGroup}>
@@ -163,10 +150,11 @@ function CampingRegister() {
                 value={value}
               />
             )}
+            rules={{required: true}}
             name="location.city"
             defaultValue=""
           />
-          {errors.city && <Text>Campo obrigatório</Text>}
+          {errors.city && <Text style={styles.error}>Campo obrigatório</Text>}
         </View>
 
         <View style={styles.inputGroup}>
@@ -178,15 +166,17 @@ function CampingRegister() {
                 onValueChange={value => onChange(value)}
                 selectedValue={value}
               >
+                <Picker.Item key="-1" label="Selecione um estado" value="" />
                 {states.map((uf) => {
                   return <Picker.Item key={uf.toString()} label={uf} value={uf} />;
                 })}
               </Picker>
             )}
+            rules={{required: true}}
             name="location.state"
             defaultValue="Selecione um estado"
           />
-          {errors.state && <Text>Campo obrigatório</Text>}
+          {errors.state && <Text style={styles.error}>Campo obrigatório</Text>}
         </View>
 
 
@@ -203,10 +193,11 @@ function CampingRegister() {
                 value={value}
               />
             )}
+            rules={{required: true}}
             name="location.address"
             defaultValue=""
           />
-          {errors.address && <Text>Campo obrigatório</Text>}
+          {errors.address && <Text style={styles.error}>Campo obrigatório</Text>}
         </View>
 
 
@@ -226,10 +217,11 @@ function CampingRegister() {
                 value={value}
               />
             )}
+            rules={{required: true }}
             name="contact"
             defaultValue=""
           />
-          {errors.contact && <Text>Campo obrigatório</Text>}
+          {errors.contact && <Text style={styles.error}>Campo obrigatório</Text>}
         </View>
 
 
@@ -248,10 +240,11 @@ function CampingRegister() {
                 value={value}
               />
             )}
+            rules={{required: true}}
             name="description"
             defaultValue=""
           />
-          {errors.description && <Text>Campo obrigatório</Text>}
+          {errors.description && <Text style={styles.error}>Campo obrigatório</Text>}
         </View>
 
         <View style={styles.inputGroup}>
@@ -267,10 +260,11 @@ function CampingRegister() {
                 value={value}
               />
             )}
+            rules={{required: true}}
             name="image"
             defaultValue=""
           />
-          {errors.image && <Text>Campo obrigatório</Text>}
+          {errors.image && <Text style={styles.error}>Campo obrigatório</Text>}
         </View>
 
 

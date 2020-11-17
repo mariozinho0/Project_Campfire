@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         paddingTop: 2,
         borderBottomWidth: 2,
         borderBottomColor: '#F28C0F',
-        color: '#fff',
+        color: '#FFFFFF',
     },
 
     button: {
@@ -60,6 +60,10 @@ const styles = StyleSheet.create({
 
     padding: {
         paddingTop: 100,
+    },
+
+    error: {
+        color: "red",
     }
 });
 
