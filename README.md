@@ -18,7 +18,7 @@ Esse projeto foi desenvolvido utilizando as seguintes tecnologias
 
 ## Api
 - [Camping Fire Api (NodeJs)](https://github.com/pablo-matheus/camping-fire-node-api)
-- ~[Camping Fire Api (Java)]~(https://github.com/pablo-matheus/camping-fire-api)
+- ~[Camping Fire Api (Java)](https://github.com/pablo-matheus/camping-fire-api)~ Projeto antigo
 
 ## Executando a aplicação
 Instalar dependências
